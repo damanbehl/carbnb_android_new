@@ -14,6 +14,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.and.carbnb_android.R;
+import com.and.carbnb_android.SliderAdapter;
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +25,13 @@ import com.and.carbnb_android.R;
  * create an instance of this fragment.
  */
 public class HomeScreenFrag extends Fragment {
+
+    SliderView sliderView;
+    int[] images = {R.drawable.alfaromeo,
+            R.drawable.cadillac,
+            R.drawable.elantra,
+            R.drawable.wrangler,
+            R.drawable.maybach};
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -67,17 +78,24 @@ public class HomeScreenFrag extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home_screen, container, false);
-        Button button = view.findViewById(R.id.navigator_btn);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                SearchScreenFrag searchScreenFrag = new SearchScreenFrag();
-                transaction.replace(R.id.home_screen_frag, searchScreenFrag);
-                transaction.commit();
-            }
-        });
+        sliderView = view.findViewById(R.id.image_slider);
+
+        SliderAdapter sliderAdapter = new SliderAdapter(images);
+        sliderView.setSliderAdapter(sliderAdapter);
+        sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
+        sliderView.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION);
+        sliderView.startAutoCycle();
+//        Button button = view.findViewById(R.id.navigator_btn);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                FragmentManager fragmentManager = getFragmentManager();
+//                FragmentTransaction transaction = fragmentManager.beginTransaction();
+//                SearchScreenFrag searchScreenFrag = new SearchScreenFrag();
+//                transaction.replace(R.id.home_screen_frag, searchScreenFrag);
+//                transaction.commit();
+//            }
+//        });
         return view;
     }
 }
