@@ -3,12 +3,19 @@ package com.and.carbnb_android.ui;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.and.carbnb_android.CarsData;
 import com.and.carbnb_android.R;
+import com.and.carbnb_android.SearchRecyclerViewAdapter;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +32,9 @@ public class SearchScreenFrag extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private ArrayList<CarsData> carsData = new ArrayList<>();
+    private RecyclerView giftPageRecyclerView;
 
     public SearchScreenFrag() {
         // Required empty public constructor
@@ -61,6 +71,25 @@ public class SearchScreenFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search_screen, container, false);
+        View view = inflater.inflate(R.layout.fragment_search_screen, container, false);
+        giftPageRecyclerView = view.findViewById(R.id.search_recyclerview);
+
+        setProductsInfo();
+        setAdapter();
+        return view;
+    }
+
+    private void setAdapter() {
+        SearchRecyclerViewAdapter adapter = new SearchRecyclerViewAdapter(carsData);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        giftPageRecyclerView.setLayoutManager(layoutManager);
+        giftPageRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        giftPageRecyclerView.setAdapter(adapter);
+    }
+
+    private void setProductsInfo() {
+        for(int i = 0; i < 10; i++ ){
+            carsData.add(new CarsData("V-8 Engine","Product Name "+i, "150$"));
+        }
     }
 }
