@@ -5,6 +5,9 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
@@ -13,11 +16,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.and.carbnb_android.CarsData;
 import com.and.carbnb_android.R;
+import com.and.carbnb_android.SearchRecyclerViewAdapter;
 import com.and.carbnb_android.SliderAdapter;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +39,9 @@ public class HomeScreenFrag extends Fragment {
             R.drawable.elantra,
             R.drawable.wrangler,
             R.drawable.maybach};
+
+    private ArrayList<CarsData> carsData = new ArrayList<>();
+    private RecyclerView giftPageRecyclerView;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -96,6 +106,25 @@ public class HomeScreenFrag extends Fragment {
 //                transaction.commit();
 //            }
 //        });
+
+        giftPageRecyclerView = view.findViewById(R.id.search_recyclerview);
+
+        setProductsInfo();
+        setAdapter();
         return view;
+    }
+
+    private void setAdapter() {
+        SearchRecyclerViewAdapter adapter = new SearchRecyclerViewAdapter(carsData);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        giftPageRecyclerView.setLayoutManager(layoutManager);
+        giftPageRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        giftPageRecyclerView.setAdapter(adapter);
+    }
+
+    private void setProductsInfo() {
+        for(int i = 0; i < 10; i++ ){
+            carsData.add(new CarsData("V-8 Engine","Product Name "+i, "150$"));
+        }
     }
 }
