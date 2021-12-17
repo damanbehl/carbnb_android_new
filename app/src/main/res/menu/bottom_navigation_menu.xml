@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home_indic"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="home"/>
+    <item
+        android:id="@+id/search_indic"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="search"/>
+    <item
+        android:id="@+id/cart_indic"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_shopping_cart_24"
+        android:title="cart"/>
+    <item
+        android:id="@+id/garage_indic"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_directions_car_24"
+        android:title="garage"/>
+</menu>
