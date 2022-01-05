@@ -69,4 +69,20 @@
         android:textSize="20dp"
         android:textStyle="bold" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/registrationBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginbtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:backgroundTint="#808080"
+        android:text="Sign up"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
 </RelativeLayout>
